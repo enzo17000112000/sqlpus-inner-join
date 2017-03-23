@@ -1,0 +1,1 @@
+# sqlpus-inner-join
