@@ -1,0 +1,66 @@
+sqlplus system/amakal
+
+drop user actman cascade;
+
+create user actman identified by regroup;
+
+alter user actman default tablespace users temporary tablespace temp account unlock;
+
+grant connect, resource to actman;
+
+connect actman/regroup;
+
+
+create table teams(team_id number primary key, team varchar2(50) unique, rosters number, coach varchar2(50));
+
+select * from teams;
+
+insert into teams(team_id, team) values(10, 'Ginebra');
+insert into teams(team_id, team) values(11, 'San Miguel');
+insert into teams(team_id, team) values(12, 'Rain or Shine');
+insert into teams(team_id, team) values(13, 'Talk n Text');
+insert into teams(team_id, team) values(14, 'Meralco Bolts');
+
+commit;
+
+select * from teams;
+
+select team_id, team from teams;
+
+create table players(player_id number primary key, player_name varchar2(50) not null, group_id number not null, position varchar2(50));
+
+insert into players(player_id, player_name, group_id)
+values(201, 'Aguilar, Japeth',10);
+
+insert into players(player_id, player_name, group_id)
+values(202, 'Fajardo, Jun Mar',11);
+
+insert into players(player_id, player_name, group_id)
+values(203, 'Ahanmisi, Maverick',12);
+
+insert into players(player_id, player_name, group_id)
+values(204, 'Castro, Jason',13);
+
+insert into players(player_id, player_name, group_id)
+values(205, 'Al-Hussaini, Rabeh',14);
+
+insert into players(player_id, player_name, group_id)
+values(206, 'Alas, Kevin',15);
+
+insert into players(player_id, player_name, group_id)
+values(207, 'Baguio, Cyrus',16);
+
+commit;
+
+select player_id,player_name,group_id from players;
+
+select * from cat;
+
+select teams.team_id, teams.team, players.group_id, players.player_name from teams
+inner join players
+on teams.team_id = players.group_id;
+
+
+
+
+
